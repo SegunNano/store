@@ -52,17 +52,17 @@ const Login = () => {
                     <form onSubmit={handleSubmit} className="container w-[40rem]">
                         <div className="my-[2rem]">
                             <label htmlFor="email" className="block text-sm font-medium text-black">Email Address</label>
-                            <input type="email" id="email" className="mt-1 p-2rounded w-full" value={email} onChange={e => setEmail(e.target.value)} />
+                            <input type="email" id="email" className="mt-1 p-2 rounded w-full" value={email} onChange={e => setEmail(e.target.value)} />
                         </div>
                         <div className="my-[2rem]">
                             <label htmlFor="password" className="block text-sm font-medium text-black">Password</label>
-                            <input type="password" id="password" className="mt-1 p-2rounded w-full" value={password} onChange={e => setPassword(e.target.value)} />
+                            <input type="password" id="password" className="mt-1 p-2 rounded w-full" value={password} onChange={e => setPassword(e.target.value)} />
                         </div>
                         <button disabled={isLoading} type="submit" className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[4rem]">{isLoading ? 'Signing In...' : 'Sign In'}</button>
                         {isLoading && <Loader />}
                     </form>
                     <div className="mt-4">
-                        <p className="text-white">
+                        <p className="">
                             New Customer? {' '}
                             <Link to={redirect ? `/register?redirect=${redirect}` : `/register`} className="text-pink-500 hover:underline">Register</Link>
                         </p>

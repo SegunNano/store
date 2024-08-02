@@ -17,15 +17,12 @@ const register = async (req, res) => {
     try {
         await newUser.save();
         generateToken(res, newUser._id);
-
         newUser.password = '';
         res.status(201).json(newUser);
     } catch {
         res.status(400);
         throw new Error('User not created.');
     }
-
-
 };
 
 const login = async (req, res) => {
