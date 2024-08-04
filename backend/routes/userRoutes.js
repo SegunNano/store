@@ -5,8 +5,8 @@ import { register, login, logout, getAllUsers, getProfileInfo, updateProfileInfo
 
 
 router.route('/')
-    .post(asyncHandler(register))
-    .get(isLoggedIn, isAdmin, asyncHandler(getAllUsers));
+    .post(asyncHandler(register));
+// .get(isLoggedIn, isAdmin, asyncHandler(getAllUsers));
 
 router.route('/auth')
     .post(asyncHandler(login));
