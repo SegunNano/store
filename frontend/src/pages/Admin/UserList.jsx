@@ -14,11 +14,42 @@ const UserList = () => {
 
     const [editableUserId, setEditableUserId] = useState(null);
     const [editableUserName, setEditableUserName] = useState('');
-    const [editableUseEmail, setEditableUseEmail] = useState('');
+    const [editableUserEmail, setEditableUserEmail] = useState('');
 
     useEffect(() => {
         refetch;
     }, [refetch]);
+
+
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure?')) {
+            try {
+                await deleteUser(id);
+            } catch (err) {
+                toast.error(err.data.message || err.error);
+            }
+        }
+    };
+
+    const toggleEdit = (id, username, email) => {
+        setEditableUserId(id);
+        setEditableUserName(username);
+        setEditableUserEmail(email);
+    };
+
+    const handleUpdate = async (id) => {
+        try {
+            await updateUser({
+                userId: id,
+                username: editableUserName,
+                email: editableUserEmail
+            });
+            setEditableUserId(null);
+            refetch();
+        } catch (err) {
+            toast.error(err.data.message || err.error);
+        }
+    };
 
 
     return (
@@ -40,9 +71,50 @@ const UserList = () => {
                                 <tr key={user._id}>
                                     <td className="px-4 py-2">{user._id}</td>
                                     <td className="px-4 py-2">
-                                        {editableUserId === user.id ? (
+                                        {editableUserId === user._id ? (
                                             <div className="flex items-center">
-                                                <input type="text" name="" id="" value={(editableUserName)} onChange={e => setEditableUserName(e.target.value)} className="w-full p-2 border rounded-lg" />
+                                                <input type="text" name="" id="" value={editableUserName} onChange={e => setEditableUserName(e.target.value)} className="w-full p-2 border rounded-lg" />
+                                                <button onClick={() => handleUpdate(user._id)} className="ml-2 bg-blue-500 text-white py-2 rounded-lg">
+                                                    <FaCheck />
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center">
+                                                {user.username}{''}
+                                                <button onClick={() => toggleEdit(user._id, user.username, user.email)}>
+                                                    <FaEdit className="ml-[1rem]" />
+                                                </button>
+                                            </div>
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {editableUserId === user._id ? (
+                                            <div className="flex items-center">
+                                                <input type="text" value={editableUserEmail} name="" id="" onChange={e => setEditableUserEmail(e.target.value)} className="w-full p-2 border rounded-lg" />
+                                                <button onClick={() => handleUpdate(user._id)} className="ml-2 bg-blue-500 text-white py-2 py-4 rounded-lg">
+                                                    <FaCheck />
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center">
+                                                <p>{user.email}</p>
+                                                <button onClick={() => toggleEdit(user._id, user.username, user.email)}>
+                                                    <FaEdit className="ml-[1rem]" />
+                                                </button>
+                                            </div>
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {user.isAdmin ? (
+                                            <FaCheck style={{ color: "green" }} />
+                                        ) : (
+                                            <FaTimes style={{ color: "red" }} />
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {!user.isAdmin && (
+                                            <div className="flex">
+                                                <button onClick={() => handleDelete(user._id)} className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"><FaTrash /></button>
                                             </div>
                                         )}
                                     </td>
