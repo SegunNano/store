@@ -7,6 +7,8 @@ const register = async (req, res) => {
     if (!(username && email && password)) {
         throw new Error('Please Fill All fields.');
     }
+
+
     const userExists = await User.findOne({ email });
     if (userExists) res.status(400).send('User already exists.');
 
@@ -39,6 +41,8 @@ const login = async (req, res) => {
             existingUser.password = '';
             res.status(201).json(existingUser);
             return;
+        } else {
+            console.log('password not match');
         }
     }
 };
