@@ -22,7 +22,7 @@ const productSchema = schema({
     reviews: [reviewSchema],
     rating: { type: Number, required, default: 0 },
     numReviews: { type: Number, required, default: 0 },
-    pricing: { type: Number, required, default: 0 },
+    price: { type: Number, required, default: 0 },
     countInStock: { type: Number, required, default: 0 },
 
 }, { timestamps: true });
