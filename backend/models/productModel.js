@@ -6,7 +6,7 @@ const required = true;
 
 const reviewSchema = schema({
     name: { type: String, required },
-    rating: { type: String, required },
+    rating: { type: Number, required },
     comment: { type: String, required },
     user: { type: schema.Types.ObjectId, ref: 'User', required }
 }, { timestamps: true });

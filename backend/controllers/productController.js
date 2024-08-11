@@ -121,15 +121,42 @@ const fetchAllProducts = async (req, res) => {
     }
 };
 
+
+
 const addProductReview = async (req, res) => {
     try {
         const { rating, comment } = req.body;
         const product = await Product.findById(req.params.id);
 
         if (product) {
+            // const productReviews = product.reviews;
+            // console.log(productReviews);
+            const alreadyReviewed = product.reviews.some(r => r.user.toString() === req.user._id.toString());
+
+            if (alreadyReviewed) {
+                res.status(400);
+                throw new Error('Product already reviwed.');
+            }
+
+            const review = {
+                name: req.user.username,
+                rating: Number(rating),
+                comment,
+                user: req.user._id
+            };
+
+            product.reviews.push(review);
+            product.numReviews = product.reviews.length;
+
+            product.rating = (product.reviews.reduce((acc, rev) => acc + rev.rating, 0)) / product.reviews.length;
+            // console.log(product.rating);
+            await product.save();
+            res.status(201).json({ message: 'Review added.' });
+
 
         } else {
-
+            res.status(404);
+            throw new Error('Product not found.');
         }
     } catch (err) {
         console.error(err);
@@ -137,6 +164,26 @@ const addProductReview = async (req, res) => {
     }
 };
 
+const fetchTopProducts = async (req, res) => {
+    try {
+        const products = await Product.find({}).sort({ rating: -1 }).limit(4);
+        res.json(products);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json(err.message);
+    }
+};
 
-export { addProduct, updateProductDetails, deleteProduct, fetchProducts, readProduct, fetchAllProducts, addProductReview };
+
+const fetchNewProducts = async (req, res) => {
+    try {
+        const products = await Product.find({}).sort({ _id: -1 }).limit(4);
+        res.json(products);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json(err.message);
+    }
+};
+
+export { addProduct, updateProductDetails, deleteProduct, fetchProducts, readProduct, fetchAllProducts, addProductReview, fetchTopProducts, fetchNewProducts };
 

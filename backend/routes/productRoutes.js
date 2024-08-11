@@ -2,7 +2,7 @@ import express from "express";
 import formidable from "express-formidable";
 const router = express.Router();
 import { asyncHandler, isAdmin, isLoggedIn, checkId } from "../middlewares/middleswares.js";
-import { addProduct, updateProductDetails, deleteProduct, fetchProducts, readProduct, fetchAllProducts, addProductReview } from "../controllers/productController.js";
+import { addProduct, updateProductDetails, deleteProduct, fetchProducts, readProduct, fetchAllProducts, addProductReview, fetchTopProducts, fetchNewProducts } from "../controllers/productController.js";
 
 router.route('/')
     .get(asyncHandler(fetchProducts))
@@ -11,6 +11,11 @@ router.route('/')
 router.route('/allproducts')
     .get(asyncHandler(fetchAllProducts));
 
+router.route('/top')
+    .get(asyncHandler(fetchTopProducts));
+
+router.route('/new')
+    .get(asyncHandler(fetchNewProducts));
 
 router.route('/:id')
     .get(asyncHandler(readProduct))
