@@ -56,12 +56,12 @@ const ProductList = () => {
             productData.append('description', description);
             productData.append('quantity', quantity);
             productData.append('brand', brand);
-            productData.append('countInstock', stock);
+            productData.append('countInStock', stock);
             productData.append('price', price);
             productData.append('category', category);
 
             const { data } = await createProduct(productData);
-            console.log(data);
+            // console.log(data);
             { data.error ? (toast.error(data.error)) : (toast.success(`${data.name} is created`) && navigate('/')); }
 
             if (data.error) {
