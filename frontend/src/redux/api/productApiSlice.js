@@ -76,17 +76,13 @@ export const productApiSlice = apiSlice.injectEndpoints({
         }),
 
         fetchTopProducts: builder.query({
-            query: () => {
-                url: `${PRODUCT_URL}/top`;
-            },
+            query: () => `${PRODUCT_URL}/top`,
             keepUnusedDataFor: 5,
 
         }),
 
         fetchNewProducts: builder.query({
-            query: () => {
-                url: `${PRODUCT_URL}/new`;
-            },
+            query: () => `${PRODUCT_URL}/new`,
             keepUnusedDataFor: 5,
 
         }),
