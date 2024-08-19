@@ -1,6 +1,7 @@
 import { useFetchTopProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "./Loader";
 import SmallProduct from "../pages/Products/SmallProduct";
+import ProductCarousel from "../pages/Products/ProductCarousel";
 
 
 
@@ -15,7 +16,7 @@ const Header = () => {
         <>
             <div className="flex justify-around">
                 <div className="xl:block lg:hidden md:hidden sm:hidden">
-                    <div className="grid grid-col-2">
+                    <div className="grid grid-cols-2">
                         {data.map(product => (
                             <div key={product._id}>
                                 <SmallProduct product={product} />
@@ -23,9 +24,14 @@ const Header = () => {
                         ))}
                     </div>
                 </div>
+
+                <ProductCarousel />
+
             </div>
         </>
     );
 };
 
 export default Header;
+
+

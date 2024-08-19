@@ -112,7 +112,8 @@ const readProduct = async (req, res) => {
 const fetchAllProducts = async (req, res) => {
     try {
 
-        const products = await Product.find({}).populate('category').limit(12).sort({ createAt: -1 });
+        // const products = await Product.find({}).populate('category').limit(12).sort({ createAt: -1 });
+        const products = await Product.find({}).populate('category').sort({ createAt: -1 });
         res.json(products);
 
     } catch (err) {
@@ -166,7 +167,20 @@ const addProductReview = async (req, res) => {
 
 const fetchTopProducts = async (req, res) => {
     try {
-        const products = await Product.find({}).sort({ rating: -1 }).limit(4);
+        const allproducts = await Product.find({});
+        const idxArray = [];
+        for (let i = 0; i < 4; i++) {
+            let idx = Math.floor(Math.random() * allproducts.length);
+            while (idxArray.some(e => e === idx)) {
+                idx = Math.floor(Math.random() * allproducts.length);
+            }
+            idxArray.push(idx);
+        }
+
+        // const products = await Product.find({}).sort({ rating: -1 }).limit(4);
+        const products = [allproducts[idxArray[0]], allproducts[idxArray[1]], allproducts[idxArray[2]], allproducts[idxArray[3]]];
+
+        // console.log(products);
         res.json(products);
     } catch (err) {
         console.error(err);
