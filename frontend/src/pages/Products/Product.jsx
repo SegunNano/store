@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import HeartIcon from "./HeartIcon";
 
 
 const Product = ({ product }) => {
@@ -7,7 +8,7 @@ const Product = ({ product }) => {
             <div className="relative">
                 <img src={product.image} alt={product.name} className="w-[30rem] rounded" />
 
-                {/* <HeartIcon product={product}/> */}
+                <HeartIcon product={product} />
 
             </div>
 
