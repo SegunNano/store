@@ -7,6 +7,7 @@ import { useLogoutMutation } from '../../redux/api/usersApiSlice';
 import { logout } from '../../redux/features/auth/authSlice';
 
 import './Navigation.css';
+import FavoritesCount from '../Products/FavoritesCount';
 
 
 const Navigation = () => {
@@ -53,9 +54,9 @@ const Navigation = () => {
                     <AiOutlineShoppingCart size={26} className='mr-2 mt-[3rem]' />
                     <span className="hidden nav-item-name mt-[3rem]">CART</span>{" "}
                 </Link>
-                <Link to='/wishlist' className='flex items-center transition-transform transform hover:translate-x-2'>
+                <Link to='/favorites' className='flex items-center transition-transform transform hover:translate-x-2'>
                     <FaHeart size={26} className='mr-2 mt-[3rem]' />
-                    <span className="hidden nav-item-name mt-[3rem]">WISHLIST</span>{" "}
+                    <span className="hidden nav-item-name mt-[3rem]">Favorites</span>{" "} <FavoritesCount />
                 </Link>
             </div>
 
