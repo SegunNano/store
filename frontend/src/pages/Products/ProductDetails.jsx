@@ -8,6 +8,7 @@ import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import { FaBox, FaClock, FaShoppingCart, FaStar, FaStore } from "react-icons/fa";
 import HeartIcon from "./HeartIcon";
+import Ratings from "./Ratings";
 
 
 
@@ -23,6 +24,10 @@ const ProductDetails = () => {
     // console.log(useReadProductQuery(productId).error);
     const { userInfo } = useSelector(state => state.auth);
     const [useCreateReview, { isLoading: loadingProductReview }] = useCreateReviewMutation();
+
+    const addToCartHandler = () => {
+
+    };
 
 
     return (
@@ -73,9 +78,27 @@ const ProductDetails = () => {
                             </div>
 
                             <div className="flex flex-wrap justify-between">
-                                {/* Ratings */}
+                                <Ratings value={product.rating} text={` ${product.numReviews} reviews`} />
+
+
+                                {product.countInStock > 0 && (
+                                    <div className="">
+                                        <select name="" value={qty} onChange={e => SetQty(e.target.value)} id="" className="p-2 rounded-lg text-black">
+                                            {[...Array(product.countInStock).keys()].map(x => (
+                                                <option key={x + 1} value={x + 1}> {x + 1}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                )}
                             </div>
 
+                            <div className="btn-container">
+                                <button onClick={addToCartHandler} disable={product.countInStock === 0} className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div className="container flex flex-wrap items-start justify-between mt-[5rem] ml-[10rem]">
+                            {/* ProductTabs */}
                         </div>
                     </div>
                 </>
