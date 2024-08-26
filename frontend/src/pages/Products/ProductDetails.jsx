@@ -22,7 +22,6 @@ const ProductDetails = () => {
     const [comment, setComment] = useState('');
 
     const { data: product, isLoading, isError, error, refetch } = useReadProductQuery(productId);
-    // console.log(useReadProductQuery(productId).error);
     const { userInfo } = useSelector(state => state.auth);
     const [CreateReview, { isLoading: loadingProductReview }] = useCreateReviewMutation();
 
