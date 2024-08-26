@@ -24,7 +24,7 @@ router.route('/:id')
 
 
 router.route('/:id/reviews')
-    .post(isLoggedIn, isAdmin, asyncHandler(addProductReview));
+    .post(isLoggedIn, asyncHandler(addProductReview));
 
 
 export default router;

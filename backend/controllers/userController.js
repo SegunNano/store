@@ -42,7 +42,7 @@ const login = async (req, res) => {
             res.status(201).json(existingUser);
             return;
         } else {
-            console.log('password not match');
+            throw new Error('Username or password incorrect.');
         }
     }
 };
