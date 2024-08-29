@@ -15,7 +15,8 @@ import Login from './pages/Auth/Login.jsx';
 import Register from './pages/Auth/Register.jsx';
 
 
-import Home from './Home.jsx';
+import Home from './pages/Home.jsx';
+import Cart from './pages/Cart.jsx';
 import Favorites from './pages/Products/Favorites.jsx';
 
 //Admin
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
       <Route index={true} path='/' element={<Home />} />
       <Route path='/favorites' element={<Favorites />} />
       <Route path='/product/:id' element={<ProductDetails />} />
+      <Route path='/cart' element={<Cart />} />
 
 
       <Route path='' element={<PrivateRoute />}>
