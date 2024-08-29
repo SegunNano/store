@@ -11,7 +11,17 @@ const Cart = () => {
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
 
-    console.log(cartItems);
+    const addToCartHandler = (product, qty) => {
+        dispatch(addToCart({ ...product, qty }));
+    };
+
+    const removeFromCartHandler = (id) => {
+        dispatch(removeFromCart(id));
+    };
+
+    const checkOutHandler = () => {
+        navigate('/shipping');
+    };
 
 
     return (
@@ -23,6 +33,47 @@ const Cart = () => {
                     <>
                         <div className="flex flex-col w-[80%]">
                             <h1 className="text-2xl-font-semibold mb-4">Shopping Cart</h1>
+                            {cartItems.map(item => (
+                                <div key={item._id} className="flex item-center mb-[1rem] pb-2">
+                                    <div className="w-[5rem] h-[5rem]">
+                                        <img src={item.image} alt={item.name} className="w-fill h-full rounded object-cover" />
+                                    </div>
+                                    <div className="flex-1 ml-4">
+                                        <Link to={`/product/${item._id}`} className="text-pink-500">{item.name}</Link>
+                                        <div className="mt-2">{item.brand}</div>
+                                        <div className="mt-2 font-bold">$ {item.price}</div>
+                                    </div>
+
+                                    <div className="w-24">
+                                        <select value={item.qty} className="w-full p-1 border rounded text-block" onChange={e => addToCartHandler(item, Number(e.target.value))}> {[...Array(item.countInStock).keys()].map(x => (
+                                            <option key={x + 1} value={x + 1}> {x + 1}</option>
+                                        ))}</select>
+                                    </div>
+
+                                    <div>
+                                        <button className="text-red-500 mr-[5rem]" onClick={() => removeFromCartHandler(item._id)}><FaTrash className="ml-[1rem] mt-[0.5rem]" /></button>
+                                    </div>
+
+                                </div>
+                            ))}
+
+                            <div className="mt-8 w-[40rem]">
+                                <div className="p-4 rounded-lg">
+                                    <h2 className="text-xl font-semibold mb-2">
+                                        Items ({cartItems.reduce((acc, item) => acc + Number(item.qty), 0)})
+                                    </h2>
+                                    <div className="text-2xl font-bold">
+                                        ${' '}
+                                        {cartItems.reduce((acc, item) => acc + Number(item.qty * item.price), 0).toFixed(2)}
+                                    </div>
+
+                                    <button className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full" disabled={cartItems.length === 0} onClick={checkOutHandler}>
+                                        Proceed to Checkout
+                                    </button>
+
+                                </div>
+                            </div>
+
                         </div>
                     </>
                 )}

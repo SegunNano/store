@@ -86,6 +86,15 @@ export const productApiSlice = apiSlice.injectEndpoints({
             keepUnusedDataFor: 5,
 
         }),
+        getFilteredProducts: builder.query({
+            query: ({ checked, radio }) => ({
+                url: `${PRODUCT_URL}/filtered-products`,
+                method: 'GET',
+                body: { checked, radio }
+
+
+            })
+        })
 
 
     })
@@ -93,4 +102,4 @@ export const productApiSlice = apiSlice.injectEndpoints({
 
 
 
-export const { useGetProductsQuery, useFetchProductQuery, useFetchAllProductsQuery, useReadProductQuery, useUploadProductImageMutation, useCreateProductMutation, useUpdateProductMutation, useDeleteProductMutation, useCreateReviewMutation, useFetchTopProductsQuery, useFetchNewProductsQuery } = productApiSlice;
+export const { useGetProductsQuery, useFetchProductQuery, useFetchAllProductsQuery, useReadProductQuery, useUploadProductImageMutation, useCreateProductMutation, useUpdateProductMutation, useDeleteProductMutation, useCreateReviewMutation, useFetchTopProductsQuery, useFetchNewProductsQuery, useGetFilteredProductsQuery } = productApiSlice;

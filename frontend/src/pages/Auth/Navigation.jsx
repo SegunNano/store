@@ -7,11 +7,20 @@ import { useLogoutMutation } from '../../redux/api/usersApiSlice';
 import { logout } from '../../redux/features/auth/authSlice';
 
 import './Navigation.css';
-import FavoritesCount from '../Products/FavoritesCount';
+import StateCounter from '../Products/StateCounter';
 
 
 const Navigation = () => {
     const { userInfo } = useSelector(state => state.auth);
+    const { cartItems } = useSelector(state => state.cart);
+    const favorites = useSelector(state => state.favorites);
+
+    const favoriteCount = favorites.length;
+    const cartCount = cartItems.reduce((acc, cartItem) => acc + Number(cartItem.qty), 0);
+
+
+
+
     const [dropDownOpen, setDropDownOpen] = useState(false);
     const [showSideBar, setShowSideBar] = useState(false);
 
@@ -52,11 +61,11 @@ const Navigation = () => {
                 </Link>
                 <Link to='/cart' className='flex items-center transition-transform transform hover:translate-x-2'>
                     <AiOutlineShoppingCart size={26} className='mr-2 mt-[3rem]' />
-                    <span className="hidden nav-item-name mt-[3rem]">CART</span>{" "}
+                    <span className="hidden nav-item-name mt-[3rem]">CART</span>{" "} <StateCounter count={cartCount} />
                 </Link>
                 <Link to='/favorites' className='flex items-center transition-transform transform hover:translate-x-2'>
                     <FaHeart size={26} className='mr-2 mt-[3rem]' />
-                    <span className="hidden nav-item-name mt-[3rem]">Favorites</span>{" "} <FavoritesCount />
+                    <span className="hidden nav-item-name mt-[3rem]">Favorites</span>{" "} <StateCounter count={favoriteCount} />
                 </Link>
             </div>
 

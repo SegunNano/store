@@ -199,5 +199,20 @@ const fetchNewProducts = async (req, res) => {
     }
 };
 
-export { addProduct, updateProductDetails, deleteProduct, fetchProducts, readProduct, fetchAllProducts, addProductReview, fetchTopProducts, fetchNewProducts };
+const filteredProducts = async (req, res) => {
+    try {
+        const { checked, radio } = req.body;
+        let args = {};
+        if (checked.length > 0) args.category = checked;
+        if (radio.length > 0) args.price = { $gte: radio[0], $lte: radio[1] };
+
+        const products = await Product.find(args);
+        res.json(products);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json('Internal Server Error');
+    }
+};
+
+export { addProduct, updateProductDetails, deleteProduct, fetchProducts, readProduct, fetchAllProducts, addProductReview, fetchTopProducts, fetchNewProducts, filteredProducts };
 
