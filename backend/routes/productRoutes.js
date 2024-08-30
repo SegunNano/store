@@ -18,7 +18,7 @@ router.route('/new')
     .get(asyncHandler(fetchNewProducts));
 
 router.route('/filtered-products')
-    .get(asyncHandler(filteredProducts));
+    .post(asyncHandler(filteredProducts));
 
 router.route('/:id')
     .get(asyncHandler(readProduct))
