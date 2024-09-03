@@ -91,5 +91,98 @@ const calculateTotalSales = async (req, res) => {
 };
 
 
-export { createOrder, getAllOrders, getUserOrders, ordersCount, calculateTotalSales }
+const calculateTotalSalesByDate = async (req, res) => {
+    try {
+        const salesByDate = await Order.aggregate([
+            {
+                $match: {
+                    isPaid: true
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        $dateToString: {
+                            format: '%Y-%m-%d',
+                            date: '$paidAt'
+                        },
+                    },
+                    totalSales: { $sum: '$totalPrice' }
+                }
+            }
+        ]);
+
+        res.json(salesByDate);
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+const getOrderById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const order = await Order.findById(id).populate('user', 'username email');
+        if (order) {
+            res.json(order);
+        } else {
+            res.status(404);
+            throw new Error("Order not found");
+        }
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+const markOrderAsPaid = async (req, res) => {
+    // const { orderId } = req.params;
+    const { id, status, update_time, payer } = req.body;
+    try {
+        const order = await Order.findById(req.params.id);
+        if (order) {
+            order.isPaid = true;
+            order.paidAt = Date.now();
+            order.paymentResult = {
+                id,
+                status,
+                update_time,
+                email_address: payer.email_address
+            };
+
+            const updatedOrder = await order.save;
+            res.status(200).json(updatedOrder);
+        } else {
+            res.status(404);
+            throw new Error("Order not found");
+        }
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+const markOrderAsDelivered = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const order = await Order.findById(id);
+        if (order) {
+            order.isDelivered = true;
+            order.deliveredAt = Date.now();
+
+            const updatedOrder = await order.save();
+            res.status(200).json(updatedOrder);
+        } else {
+            res.status(404);
+            throw new Error("Order not found");
+        }
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+
+
+
+export { createOrder, getAllOrders, getUserOrders, ordersCount, calculateTotalSales, calculateTotalSalesByDate, getOrderById, markOrderAsPaid, markOrderAsDelivered }
 
