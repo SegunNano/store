@@ -21,6 +21,7 @@ import Favorites from './pages/Products/Favorites.jsx';
 import ProductDetails from './pages/Products/ProductDetails.jsx';
 import Shop from './pages/Shop.jsx';
 import Shipping from './components/Shipping.jsx';
+import PlaceOrder from './pages/Orders/PlaceOrder.jsx';
 
 //Admin
 import AdminRoute from './pages/Admin/AdminRoute.jsx';
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
       <Route path='' element={<PrivateRoute />}>
         <Route path='/profile' element={<Profile />} />
         <Route path='/shipping' element={<Shipping />} />
+        <Route path='/place-order' element={<PlaceOrder />} />
 
         {/* {AdminRoute} */}
         <Route path='/admin' element={<AdminRoute />}>
