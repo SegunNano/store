@@ -109,7 +109,13 @@ const PlaceOrder = () => {
                             </ul>
                             <div>
                                 <h2 className="text-2xl font-semibold mb-4">
-                                    <strong>Address:</strong>
+                                    <strong>Address: </strong>
+                                </h2>
+                                <h2 className="text-2xl font-semibold mb-4">
+                                    {cart.shippingAddress.address},{" "}
+                                    {cart.shippingAddress.city},{" "}
+                                    {cart.shippingAddress.postalCode},{" "}
+                                    {cart.shippingAddress.country}.
                                 </h2>
                             </div>
                         </div>
