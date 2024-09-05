@@ -51,7 +51,7 @@ const PlaceOrder = () => {
                                     <th scope="col" className="px-6 py-3">
                                         Price
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                         Total
                                     </th>
                                 </tr>
@@ -83,7 +83,7 @@ const PlaceOrder = () => {
 
                     </div>
                 )}
-                <div className="mt-[3rem] flex flex-col bg-white border border-t-4 border-t-blue-600 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:border-t-blue-500 dark:shadow-neutral-700/70 w-full">
+                <div className="mt-[3rem] flex flex-col bg-white border border-t-4 border-t-pink-600 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:border-t-pink-500 dark:shadow-neutral-700/70 w-full">
                     <div className="p-4 md:p-5">
                         <h3 className="text-lg font-bold text-gray-800 dark:text-white">
                             Order Summary
@@ -103,8 +103,10 @@ const PlaceOrder = () => {
                                     ${cart.taxPrice}
                                 </li>
                                 <li className="inline-flex items-center gap-x-2 py-3 px-4 text-sm font-medium text-gray-800 dark:text-white">
-                                    <span className="font-semibold">Total Price:</span>
-                                    ${cart.totalPrice}
+                                    <strong>
+                                        <span className="font-semibold">Total Price: </span>
+                                        ${cart.totalPrice}
+                                    </strong>
                                 </li>
                             </ul>
                             <div>

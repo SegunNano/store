@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { saveShippingAddress, savePaymentMethod } from "../redux/features/cart/cartSlice";
-import ShippingInput from "../pages/Orders/ShippingInput";
-import ProgressStepper from "./ProgressStepper";
+import { saveShippingAddress, savePaymentMethod } from "../../redux/features/cart/cartSlice";
+import ShippingInput from "../../components/ShippingInput";
+import ProgressStepper from "../../components/ProgressStepper";
 
 
 const Shipping = () => {
@@ -53,7 +53,7 @@ const Shipping = () => {
                         <label htmlFor="" className="block text-[#635C50]">Select Payment Method</label>
                         <div className="mt-2">
                             <label className="inline-flex items-center">
-                                <input type="radio" value="PayPal" name="paymentMethod" className="form-radio text-pink-500" onChange={e => setPaymentMethod(e.target.value)} />
+                                <input type="radio" value="PayPal" name="paymentMethod" className="form-radio h-4 w-4 text-pink-500" onChange={e => setPaymentMethod(e.target.value)} />
 
                                 <span className="ml-2">PayPal or Credit Card</span>
                             </label>
