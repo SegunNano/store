@@ -1,0 +1,56 @@
+/* HalfStarRating.css */
+
+/* Container for each star's halves */
+.half-star-rating {
+    display: inline-block;
+    width: 24px;
+    /* Full width for a full star (12px for each half) */
+    height: 24px;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+}
+
+/* Hide the radio input while keeping it functional */
+input[type='radio'] {
+    position: absolute;
+    width: 12px;
+    height: 24px;
+    opacity: 0;
+    /* Completely hide the radio buttons */
+    z-index: 1;
+    cursor: pointer;
+    margin: 0;
+    visibility: hidden;
+}
+
+/* Position the labels exactly next to each other */
+.half-star-rating label {
+    position: absolute;
+    top: 0;
+    width: 12px;
+    /* Each half takes up 12px of width */
+    height: 24px;
+    padding: 0;
+    margin-right: 0;
+    cursor: pointer;
+    display: block;
+}
+
+label.right-half {
+    margin-left: -49%;
+}
+
+/* Left half should be on the left */
+.half-star-rating .left-half {
+    left: 0;
+    display: inline-block;
+}
+
+/* Right half should be on the right, aligned exactly next to the left half */
+.half-star-rating .right-half {
+    left: 12px;
+    /* Push the right half exactly next to the left half */
+    display: inline-block;
+}
