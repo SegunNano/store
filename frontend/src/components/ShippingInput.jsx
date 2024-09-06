@@ -1,9 +1,8 @@
-
-const ShippingInput = ({ label, value, setValue }) => {
+const ShippingInput = ({ label, value, setValue, }) => {
     return (
         <div className="mb-4">
-            <label htmlFor="" className="block  mb-2">{label}</label>
-            <input type="text" placeholder={`Enter ${label}`} className="w-full p-2 border rounded" value={value} onChange={e => setValue(e.target.value)} />
+            <label htmlFor="" className="block mb-2">{label}</label>
+            <input type="text" value={value} onChange={(e) => setValue(e.target.value)} className="w-full p-2 border rounded" />
         </div>
     );
 };

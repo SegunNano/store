@@ -12,6 +12,7 @@ const Star = ({ value, filled, onChange, isLeftHalf }) => {
                 name="rating"
                 value={value}
                 onChange={onChange}
+                className='halfStarRadio'
             />
             <label
                 htmlFor={`half-${value}-${isLeftHalf ? 'left' : 'right'}`}

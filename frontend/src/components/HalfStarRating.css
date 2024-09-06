@@ -13,7 +13,7 @@
 }
 
 /* Hide the radio input while keeping it functional */
-input[type='radio'] {
+.half-star-radio {
     position: absolute;
     width: 12px;
     height: 24px;

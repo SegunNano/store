@@ -6,6 +6,7 @@ import { Route, RouterProvider, createRoutesFromElements } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 //Private Route
 import PrivateRoute from './components/PrivateRoute.jsx';
@@ -31,6 +32,7 @@ import ProductList from './pages/Admin/ProductList.jsx';
 import ProductUpdate from './pages/Admin/ProductUpdate.jsx';
 import AllProducts from './pages/Admin/AllProducts.jsx';
 import Profile from './pages/User/Profile.jsx';
+import Order from './pages/Orders/Order.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,6 +52,7 @@ const router = createBrowserRouter(
         <Route path='/profile' element={<Profile />} />
         <Route path='/shipping' element={<Shipping />} />
         <Route path='/place-order' element={<PlaceOrder />} />
+        <Route path='/order/:id' element={<Order />} />
 
         {/* {AdminRoute} */}
         <Route path='/admin' element={<AdminRoute />}>
@@ -65,6 +68,8 @@ const router = createBrowserRouter(
 );
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <PayPalScriptProvider>
+      <RouterProvider router={router} />
+    </PayPalScriptProvider>
   </Provider>
 );
