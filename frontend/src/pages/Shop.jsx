@@ -24,7 +24,6 @@ const Shop = () => {
         }
     }, [categoriesQuery.data, dispatch]);
 
-    // console.log(filteredProductsQuery.data);
 
     useEffect(() => {
         if (!(checked.length && radio.length || filteredProductsQuery.isLoading)) {

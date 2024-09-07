@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
+
+
 import { useUpdateProductMutation, useDeleteProductMutation, useFetchProductQuery, useUploadProductImageMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import { toast } from "react-toastify";
@@ -10,8 +13,6 @@ const ProductUpdate = () => {
 
     const params = useParams();
     const { data: productData } = useFetchProductQuery(params._id);
-
-    console.log(productData);
 
     const [image, setImage] = useState(productData?.image || '');
     const [name, setName] = useState(productData?.name || '');
@@ -75,7 +76,7 @@ const ProductUpdate = () => {
             formData.append('category', category);
 
             const { data } = await updateProduct({ productId: params._id, formData });
-            // console.log(data);
+
             { data.error ? (toast.error(data.error)) : (toast.success(`${data.name} is updated`) && navigate('/')); }
 
             // if (data.error) {

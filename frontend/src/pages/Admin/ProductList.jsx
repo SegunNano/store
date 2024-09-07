@@ -33,7 +33,6 @@ const ProductList = () => {
         try {
 
             const res = await uploadProductImage(formData).unwrap();
-            console.log(res);
             toast.success(res.message);
             setImage(res.image);
             setImageUrl(res.image);
@@ -61,7 +60,6 @@ const ProductList = () => {
             productData.append('category', category);
 
             const { data } = await createProduct(productData);
-            // console.log(data);
             { data.error ? (toast.error(data.error)) : (toast.success(`${data.name} is created`) && navigate('/')); }
 
             if (data.error) {

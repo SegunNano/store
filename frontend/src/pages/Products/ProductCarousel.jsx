@@ -20,7 +20,6 @@ const ProductCarousel = () => {
         autoplay: true,
         autoplaySpeed: 3000,
     };
-    // console.log(products);
 
     return (
         <div className="mb-4 xl:block lg:block md:block">

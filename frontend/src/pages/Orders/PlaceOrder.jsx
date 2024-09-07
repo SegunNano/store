@@ -17,7 +17,6 @@ const PlaceOrder = () => {
     const navigate = useNavigate();
 
     const cart = useSelector(state => state.cart);
-    console.log(cart);
     const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
     useEffect(() => {

@@ -4,7 +4,6 @@ const Ratings = ({ value, text, color = 'yellow-500' }) => {
     const halfStars = value - fullStars > 0.4 ? 1 : 0;
     const emptyStars = 5 - (fullStars + halfStars);
 
-    console.log(Math.random());
 
     return (
         <div key={Math.random()} className="flex items-center">

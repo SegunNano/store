@@ -53,7 +53,6 @@ const CategoryList = () => {
         }
 
         try {
-            console.log(updatingName, selectedCategory);
             const res = await updateCategory({ categoryId: selectedCategory._id, updatedCategory: { name: updatingName } }).unwrap();
             if (res.error) {
                 toast.error(res.error);

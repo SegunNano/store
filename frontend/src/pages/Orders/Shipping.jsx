@@ -24,7 +24,6 @@ const Shipping = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log({ paymentMethod, address, country, city, postalCode });
         dispatch(savePaymentMethod(paymentMethod));
         dispatch(saveShippingAddress({ address, country, city, postalCode }));
         navigate('/place-order');

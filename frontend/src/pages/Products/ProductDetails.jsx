@@ -28,7 +28,6 @@ const ProductDetails = () => {
     const [CreateReview, { isLoading: loadingProductReview }] = useCreateReviewMutation();
 
     const addToCartHandler = () => {
-        console.log(qty);
         if (qty > 0 && qty <= Number(product.countInStock)) {
             dispatch(addToCart({ ...product, qty }));
             navigate('/cart');

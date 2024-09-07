@@ -130,8 +130,6 @@ const addProductReview = async (req, res) => {
         const product = await Product.findById(req.params.id);
 
         if (product) {
-            // const productReviews = product.reviews;
-            // console.log(productReviews);
             const alreadyReviewed = product.reviews.some(r => r.user.toString() === req.user._id.toString());
 
             if (alreadyReviewed) {

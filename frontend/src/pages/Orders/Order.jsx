@@ -13,7 +13,6 @@ const Order = () => {
     const { data: order, refetch, isLoading, error } = useGetOrderDetailsQuery(orderId);
     const [deliverOrder, { isLoading: loadingDelivered }] = useDeliveredOrderMutation();
     const [payOrder, { isLoading: loadingPayed }] = usePayOrderMutation();
-    console.log(order);
     const { userInfo } = useSelector(state => state.auth);
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
