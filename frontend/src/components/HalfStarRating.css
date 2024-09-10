@@ -63,6 +63,18 @@ label.right-half {
 }
 
 .loginForm>.flex {
-    background-color: rgba(255, 255, 255, 0.192);
-    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.11);
+    backdrop-filter: blur(4px);
+}
+
+.updateForm {
+    background-image: url("../dribble.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.updateForm>.flex {
+    background-color: rgba(182, 14, 14, 0.123);
+    backdrop-filter: blur(10px);
 }

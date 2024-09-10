@@ -115,7 +115,7 @@ const ProductList = () => {
                         </div>
 
                         <div className="relative flex items-center">
-                            <select id="countries_disabled" className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent text-black w-full text-sm border outline-pink-300 rounded transition-all" onChange={e => setCategory(e.target.value)}>
+                            <select className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent text-black w-full text-sm border outline-pink-300 rounded transition-all" onChange={e => setCategory(e.target.value)}>
                                 <option >Choose a Category</option>
                                 {categories?.map(c => (
                                     <option key={c._id} value={c._id}>{c.name}</option>
