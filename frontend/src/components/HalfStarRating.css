@@ -13,7 +13,7 @@
 }
 
 /* Hide the radio input while keeping it functional */
-.half-star-radio {
+.halfStarRadio {
     position: absolute;
     width: 12px;
     height: 24px;
@@ -53,4 +53,16 @@ label.right-half {
     left: 12px;
     /* Push the right half exactly next to the left half */
     display: inline-block;
+}
+
+.loginForm {
+    background-image: url("../e-commerce-technology.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.loginForm>.flex {
+    background-color: rgba(255, 255, 255, 0.192);
+    backdrop-filter: blur(2px);
 }

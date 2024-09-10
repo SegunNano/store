@@ -76,75 +76,71 @@ const ProductList = () => {
 
 
     return (
-        <div className="cantainer xl:mx-[9rem] sm:mx-[0]">
-            <div className="flex flex-col md:flex-row ">
-                <AdminMenu />
-                <div className="md:w-3/4 p-3">
-                    <div className="h-12">Create Product</div>
+        <>
+            <div className="pl-[33rem] mr-[4rem] mt-[3rem]">
+                <h1 className="text-2xl font-semibold">Create Product</h1>
+            </div>
+            <div className="mt-5 max-w-4xl mx-auto">
+                <div className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full rounded-lg overflow-hidden mx-auto mt-4 pb-1">
+                    {!image && (
+                        <label for="uploadFile1" className="bg-[#f0f1f2] text-gray-500 font-semibold text-base rounded w-full h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-11 mb-2 fill-gray-500" viewBox="0 0 32 32">
+                                <path
+                                    d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
+                                    data-original="#000000" />
+                                <path
+                                    d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
+                                    data-original="#000000" />
+                            </svg>
+                            Upload file
 
-                    {imageUrl && (
-                        <div className="text-center">
-                            <img src={imageUrl} alt="product" className="block mx-auto max-h-[200px]" />
-                        </div>
-                    )}
-
-                    <div className="mb-3">
-                        <label htmlFor="" className="border  px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
-                            {image ? image.name : "Upload Image"}
-                            <input type="file" name="image" accept="image/*" onChange={uploadImageHandler} id="" className={image && 'hidden'} />
+                            <input type="file" id='uploadFile1' name="image" accept="image/*" onChange={uploadImageHandler} className="hidden" />
+                            <p className="text-xs font-medium text-gray-400 mt-2">PNG, JPG and WEBP Allowed.</p>
                         </label>
-                    </div>
-
-                    <div className="p-3">
-
-                        <div className="flex flex-wrap">
-                            <div className="one">
-                                <label htmlFor="name">Name</label><br />
-                                <input type="text" name="" id="" className="p-4 mb-3 border rounded-lg  w-[30rem]" value={name} onChange={e => setName(e.target.value)} />
-                            </div>
-                            <div className="two ml-10">
-                                <label htmlFor="name block">Price</label><br />
-                                <input type="number" name="" id="" className="p-4 mb-3 border rounded-lg  w-[30rem]" value={price} onChange={e => setPrice(e.target.value)} />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap">
-                            <div className="one">
-                                <label htmlFor="name block">Quantity</label><br />
-                                <input type="number" name="" id="" className="p-4 mb-3 border rounded-lg  w-[30rem]" value={quantity} onChange={e => setQuantity(e.target.value)} />
-                            </div>
-                            <div className="two ml-10">
-                                <label htmlFor="name block">Brand</label><br />
-                                <input type="text" name="" id="" className="p-4 mb-3 border rounded-lg  w-[30rem]" value={brand} onChange={e => setBrand(e.target.value)} />
-                            </div>
+                    )}
+                    {imageUrl && (
+                        <img src={imageUrl} alt="product" className="w-full aspect-video object-cover mb-5" />
+                    )}
+                    <div className="grid sm:grid-cols-2 gap-4 px-3">
+                        <div className="relative flex items-center">
+                            <input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent text-black w-full text-sm border outline-pink-300 rounded transition-all" />
                         </div>
 
-                        <label htmlFor="" className="my-5">Description</label>
-                        <textarea type='text' className="p-2 mb-3 border rounded-lg w-[95%]" value={description} onChange={e => setDescription(e.target.value)}></textarea>
-
-                        <div className="flex justify-between">
-                            <div className="">
-                                <label htmlFor="name block">Count In Stock</label><br />
-                                <input type="number" name="" id="" className="p-4 mb-3 border rounded-lg w-[30rem]" value={stock} onChange={e => setStock(e.target.value)} />
-                            </div>
+                        <div className="relative flex items-center">
+                            <input type="number" placeholder="Price in USD" value={price} onChange={e => setPrice(e.target.value)} className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent text-black w-full text-sm border outline-pink-300 rounded transition-all" />
                         </div>
 
-                        <div className="">
-                            <label htmlFor="">Category</label><br />
-                            <select placeholder="Choose Category" className="p-4 mb-3 border rounded-lg w-[30rem]" onChange={e => setCategory(e.target.value)}>
+                        <div className="relative flex items-center">
+                            <input type="text" placeholder="Product Brand" value={brand} onChange={e => setBrand(e.target.value)} className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent text-black w-full text-sm border outline-pink-300 rounded transition-all" />
+                        </div>
+
+                        <div className="relative flex items-center">
+                            <select id="countries_disabled" className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent text-black w-full text-sm border outline-pink-300 rounded transition-all" onChange={e => setCategory(e.target.value)}>
+                                <option >Choose a Category</option>
                                 {categories?.map(c => (
                                     <option key={c._id} value={c._id}>{c.name}</option>
                                 ))}
                             </select>
+
                         </div>
+                        <textarea placeholder='Describe the product'
+                            className="p-4 bg-[#f0f1f2]  mx-auto w-full block text-sm border border-gray-300 outline-pink-300 rounded" rows="4" value={description} onChange={e => setDescription(e.target.value)}></textarea>
+                        <div>
+                            <div className="relative flex items-center">
+                                <input type="number" placeholder="Count in stock"
+                                    className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent text-black w-full text-sm border outline-pink-300 rounded transition-all" value={stock} onChange={e => setStock(e.target.value)} />
+                            </div>
 
+                            <div className="relative flex items-center mt-4">
+                                <input type="number" placeholder="Quantity"
+                                    className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent text-black w-full text-sm border outline-pink-300 rounded transition-all" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                            </div>
+                        </div>
                     </div>
-                    <button onClick={handleSubmit} className="py-4 px-10 mt-5 rounded-lg font-bold bg-pink-600">Submit</button>
-
-
-
+                    <button type="button" onClick={handleSubmit} className="mt-8 px-6 py-4 text-sm w-[99%] bg-pink-600 hover:bg-pink-700 text-white rounded transition-all mx-[.5%]">Submit</button>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

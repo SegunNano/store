@@ -5,6 +5,7 @@ import Loader from '../../components/Loader';
 import { setCredentials } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
 import { useRegisterMutation } from '../../redux/api/usersApiSlice';
+import LoginInput from '../../components/LoginInput';
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -46,40 +47,12 @@ const Register = () => {
     };
 
     return (
-        <section className='pl-[10rem] flex flex-wrap'>
-            <div className="mr-[4rem] mt-[5rem]">
+        <>
+            <div className="pl-[40rem] mr-[4rem] mt-[5rem]">
                 <h1 className="text-2xl font-semibold mb-4">Register</h1>
-                <form onSubmit={handleSubmit} className="container w-[40rem]">
-                    <div className="my-[2rem]">
-                        <label htmlFor="name" className="block text-sm font-medium ">Name</label>
-                        <input type="text" id="name" className="mt-1 p-2 border rounded w-full" placeholder='Enter Name' value={username} onChange={e => setUsername(e.target.value)} />
-                    </div>
-                    <div className="my-[2rem]">
-                        <label htmlFor="email" className="block text-sm font-medium ">Email Address</label>
-                        <input type="text" id="email" className="mt-1 p-2 border rounded w-full" placeholder='Enter Email Address' value={email} onChange={e => setEmail(e.target.value)} />
-                    </div>
-                    <div className="my-[2rem]">
-                        <label htmlFor="password" className="block text-sm font-medium ">Password</label>
-                        <input type="password" id="password" className="mt-1 p-2 border rounded w-full" placeholder='Enter Password' value={password} onChange={e => setPassword(e.target.value)} />
-                    </div>
-                    <div className="my-[2rem]">
-                        <label htmlFor="confirmPassword" className="block text-sm font-medium ">Confirm Password</label>
-                        <input type="password" id="confirmPassword" className="mt-1 p-2 border rounded w-full" placeholder='Confirm Password' value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-                    </div>
-                    <button disabled={isLoading} type='submit' className="text-white bg-pink-500 px-4 py-2 rounded cursor-pointer my-[1rem]">{isLoading ? 'Registering...' : 'Register'}</button>
-
-                    {isLoading && <Loader />}
-                </form>
-
-                <div className="mt-4">
-                    <p className=''>
-                        Already have an account?
-                        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'} className='text-pink-500 hover:underline'>Login</Link>
-                    </p>
-                </div>
             </div>
-
-        </section>
+            <LoginInput username={username} setUsername={setUsername} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} handleSubmit={handleSubmit} isLoading={isLoading} email={email} setEmail={setEmail} password={password} setPassw0rd={setPassword} />
+        </>
     );
 };
 

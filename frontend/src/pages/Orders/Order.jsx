@@ -135,7 +135,8 @@ const Order = () => {
                             <span>${order.totalPrice.toFixed(2)}</span>
                         </li>
                         <li className="mt-1 bg-pink-100 ">
-                            {!order.isPaid && (
+                            {console.log(userInfo.username, order.user.username)}
+                            {!order.isPaid && userInfo.username === order.user.username && (
                                 <div>
                                     {loadingPayed && <Loader />}{" "}
                                     {isPending ? (
