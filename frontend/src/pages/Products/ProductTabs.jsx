@@ -50,7 +50,7 @@ const ProductTabs = ({ loadingProductReview, userInfo, submitHandler, product, r
                         </div>
                     </li>
                 </ul>
-                <div className="p-6 bg-gray-50 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full">
+                <div className="p-6 bg-gray-50 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg">
                     {activeTab === 1 && (
                         <section>
                             <div className="mt-4">
@@ -102,45 +102,42 @@ const ProductTabs = ({ loadingProductReview, userInfo, submitHandler, product, r
                             </div>
                         </section>
                     )}
+                    {activeTab === 2 && (
+                        <section>
+                            <div >
+                                {!product.reviews.length ? (
+                                    <p>No reviews</p>
+                                ) : (product.reviews.map(review => (
+                                    <div key={review._id} className="bg-[#E5E5E5] p-4 rounded-lg xl:ml[2rem] xl:w-[50rem] sm:ml[0rem] sm:w-[24rem] mb-5">
+                                        <div className="flex justify-between text-[#4F4F4F]">
+                                            <strong >{review.name}</strong>
+                                            <p>{review.createdAt.substring(0, 10)}</p>
+                                        </div>
+                                        <p className="my-4">{review.comment}</p>
+                                        <Ratings value={review.rating} />
+                                    </div>
+                                ))
+                                )}
+                            </div>
+                        </section>
+                    )}
+
+                    {activeTab === 3 && (
+                        <section className="grid sm:grid-cols-2 gap-4 px-3">
+                            {!data ? (
+                                <Loader />
+                            ) : (
+                                data.map(product => (
+                                    <div key={product._id}>
+                                        <SmallProduct product={product} />
+                                    </div>
+                                ))
+                            )}
+                        </section>
+                    )}
+
                 </div>
             </div>
-
-
-
-            {activeTab === 2 && (
-                <section>
-                    <div >
-                        {product.reviews.length === 0 ? (
-                            <p>No reviews</p>
-                        ) : (product.reviews.map(review => (
-                            <div key={review._id} className="bg-[#E5E5E5] p-4 rounded-lg xl:ml[2rem] xl:w-[50rem] sm:ml[0rem] sm:w-[24rem] mb-5">
-                                <div className="flex justify-between text-[#4F4F4F]">
-                                    <strong >{review.name}</strong>
-                                    <p>{review.createdAt.substring(0, 10)}</p>
-                                </div>
-                                <p className="my-4">{review.comment}</p>
-                                <Ratings value={review.rating} />
-                            </div>
-                        ))
-                        )}
-                    </div>
-                </section>
-            )}
-
-            {activeTab === 3 && (
-                <section className="flex flex-wrap ml-[4rem]">
-                    {!data ? (
-                        <Loader />
-                    ) : (
-                        data.map(product => (
-                            <div key={product._id}>
-                                <SmallProduct product={product} />
-                            </div>
-                        ))
-                    )}
-                </section>
-            )}
-
         </div>
     );
 };
