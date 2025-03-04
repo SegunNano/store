@@ -62,7 +62,7 @@ const Profile = () => {
                                 <div className="relative flex items-center">
                                     <input type="text" placeholder="Enter Username"
                                         className="mt-5 px-2 py-3 bg-white text-black w-full text-sm border-b-2 focus:border-pink-500 outline-none " value={username} onChange={e => setUsername(e.target.value)} />
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4"
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" Name="w-[18px] h-[18px] absolute right-4"
                                         viewBox="0 0 24 24">
                                         <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
                                         <path
